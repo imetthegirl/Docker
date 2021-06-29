@@ -6,4 +6,4 @@ RUN apt update && apt install vim wget curl python3 -y #更新软件源并安装
 
 
 
-完成Dockerfile之后使用docker build -t ubuntu18：v1 . 命令创建镜像，-t参数可以指定新的镜像的名字，.表示Dokcerfile文件在当前目录下。
+完成Dockerfile之后使用docker build -t ubuntu18：v1 . 命令创建镜像，-t参数可以指定新的镜像的名字，.表示Dokcerfile文件在当前目录下,当前目录为/root/Dockerfile/ubuntu18。
