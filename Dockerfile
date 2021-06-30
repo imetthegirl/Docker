@@ -7,6 +7,10 @@ COPY ./start.sh / #将当前目录下的start.sh复制到容器的根目录下�
 CMD ["/start.sh"] #容器启动的时候自动执行start.sh，但是使用docker run -d xxx:xx 的时候在后面加了命令就不会执行CMD指令
 ENTRYPOINT ["/start.sh"] 
 #也是容器启动的时候自动执行，但是使用docker run -d xxx:xx的时候在后面加了参数依然会执行ENTRYPOINT，只会把ENTRYPOINT命令当成一个参数使用，而不会直接执行后面的命令
+ENV a="Hello World" \
+    b="haishi Hello World" \
+    c="wo zhi hui Hello World"  #多个环境变量需要换行，一个ENV可以放所有的环境变量
+
 
 docker logs -f 容器id  # -f 跟踪日志输出 
 
