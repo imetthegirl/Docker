@@ -17,7 +17,7 @@ ADD https://download.cirros-cloud.net/0.3.0/cirros-0.3.0-x86_64-disk.img  /cirro
 
 COPY 1.tar Dockerfile.old / #将1.tar和Dockerfile.old 复制到容器的根目录下
 
-ADD 1.tar Dockerfile.old / #将1.tar和Dockerfile.old复制到容器的根目录下
+ADD 1.tar Dockerfile.old / #将1.tar和Dockerfile.old复制到容器的根目录下，并且会自动解压1.tar
 
 docker logs -f 容器id  # -f 跟踪日志输出 
 
