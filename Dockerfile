@@ -13,8 +13,11 @@ ENV a="Hello World" \
 
 ADD 1.tar /   #将压缩包1.tar放入容器的根目录中，启动容器之后根目录下为1.tar解压之后的文件
 ADD https://download.cirros-cloud.net/0.3.0/cirros-0.3.0-x86_64-disk.img  /cirros.img  #从网络下载cirros镜像放入容器中，并命名为cirros.img（下载速度日了狗）
-#ADD看上去比COPY好用很多啊
+#ADD看上去比COPY好用很多
 
+COPY 1.tar Dockerfile.old / #将1.tar和Dockerfile.old 复制到容器的根目录下
+
+ADD 1.tar Dockerfile.old / #将1.tar和Dockerfile.old复制到容器的根目录下
 
 docker logs -f 容器id  # -f 跟踪日志输出 
 
