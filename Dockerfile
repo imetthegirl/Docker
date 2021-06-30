@@ -5,7 +5,8 @@ COPY sources.list /etc/apt/sources.list #将当Dockerfile所在目录下的sourc
 RUN apt update && apt install vim wget curl python3 -y #更新软件源并安装软件。应该在安装完毕之后再清除缓存节省空间 rm -rf /var/lib/apt/lists/*
 COPY ./start.sh / #将当前目录下的start.sh复制到容器的根目录下面
 CMD ["/start.sh"] #容器启动的时候自动执行start.sh，但是使用docker run -d xxx:xx 的时候在后面加了命令就不会执行CMD指令
-ENTRYPOINT ["/start.sh"] #也是容器启动的时候自动执行，但是使用docker run -d xxx:xx的时候在后面加了参数依然会执行ENTRYPOINT，只会把命令当成一个参数使用，而不会直接执行后面的命令
+ENTRYPOINT ["/start.sh"] 
+#也是容器启动的时候自动执行，但是使用docker run -d xxx:xx的时候在后面加了参数依然会执行ENTRYPOINT，只会把ENTRYPOINT命令当成一个参数使用，而不会直接执行后面的命令
 
 docker logs -f 容器id  # -f 跟踪日志输出 
 
