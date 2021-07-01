@@ -23,6 +23,7 @@ yumdownloader --resolve --destdir /root/lixianpackages/ the_silver_searcher #以
 
 tar zcvf rpm.tar lixianpackages #将所有离线安装包打包为一整个压缩文件
 
+yum localinstall * #安装lixianpackages下所有的rpm包
 
 ### ansible离线安装参考文档
 
