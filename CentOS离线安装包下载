@@ -11,7 +11,7 @@ yumdownloader --resolve --destdir /root/lixianpackages/ ansible #下载ansible�
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #添加ansible软件源
 yumdownloader --resolve --destdir /root/lixianpackages/ ansible #部署的时候只有master需要，可以额外放到其他文件夹中
 yumdownloader --resolve --destdir /root/lixianpackages/ yum-utils device-mapper-persistent-data lvm2 #安装docker之前需要准备的软件
-yumdownloader --resolve --destdir /root/lixianpackages/ docker-ce
+yumdownloader --resolve --destdir /root/lixianpackages/ docker-ce #安装最新版的docker
 yumdownloader --resolve --destdir /root/lixianpackages/ git
 yumdownloader --resolve --destdir /root/lixianpackages/ vim
 yumdownloader --resolve --destdir /root/lixianpackages/ glances #安装以上软件，并将安装包保存在lixianpackages文件夹中
