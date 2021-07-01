@@ -1,33 +1,31 @@
 系统为centos7.6
 
-### Docker
+### 使用Yumdownloader工具
+yum install yum-utils #安装离线安装包下载工具
+mkdir /root/lixianpackages #创建离线安装包下载的文件夹
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #下载yum安装ansible所需的fedora epel源
+yumdownloader --resolve --destdir /root/lixianpackages/ ansible #下载ansible的rpm包，并存放在/root/lixianpackages文件夹中，同时会自动下载所需的依赖
 
-docker安装包下载：
 
-https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.09.8-3.el7.x86_64.rpm
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #添加ansible软件源
+yumdownloader --resolve --destdir /root/lixianpackages/ ansible
+yumdownloader --resolve --destdir /root/lixianpackages/ docker
+yumdownloader --resolve --destdir /root/lixianpackages/ git
+yumdownloader --resolve --destdir /root/lixianpackages/ vim
+yumdownloader --resolve --destdir /root/lixianpackages/ glances #安装以上软件，并将安装包保存在lixianpackages文件夹中
+rpm -ivh https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm #添加mysql-client软件源
+yumdownloader --resolve --destdir /root/lixianpackages/ mysql-community-client.x86_64 #安装mysql-client,并保存安装包
+yumdownloader --resolve --destdir /root/lixianpackages/ epel-release
+yumdownloader --resolve --destdir /root/lixianpackages/ the_silver_searcher #以两个为安装ag，并保存安装包
 
-docker依赖包下载：
 
-containerd.io：https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.2-3.el7.x86_64.rpm
-docker-ce-cli：https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-18.09.8-3.el7.x86_64.rpm
-container-selinux：http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.107-3.el7.noarch.rpm
+tar zcvf rpm.tar lixianpackages #将所有离线安装包打包为一整个压缩文件
 
-安装命令：
-
-rpm -ivh docker-ce-cli-18.09.8-3.el7.x86_64.rpm
-rpm -ivh container-selinux-2.107-3.el7.noarch.rpm
-rpm -ivh containerd.io-1.2.2-3.el7.x86_64.rpm
-rpm -ivh docker-ce-18.09.8-3.el7.x86_64.rpm
 
 ### ansible离线安装参考文档
 
 https://www.iorisun.com/archives/650/
 
-###使用Yumdownloader工具
-yum install yum-utils #安装离线安装包下载工具
-mkdir /root/lixianpackages #创建离线安装包下载的文件夹
-yumdownloader --resolve --destdir /root/lixianpackages/ ansible #下载ansible的rpm包，并存放在/root/lixianpackages文件夹中，同时会自动下载所需的依赖
 
-tar zcvf rpm.tar lixianpackages #将所有离线安装包打包为一整个压缩文件
 
 
