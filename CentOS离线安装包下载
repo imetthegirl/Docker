@@ -4,12 +4,14 @@
 yum install yum-utils #安装离线安装包下载工具
 mkdir /root/lixianpackages #创建离线安装包下载的文件夹
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #下载yum安装ansible所需的fedora epel源
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  #添加docker阿里源
 yumdownloader --resolve --destdir /root/lixianpackages/ ansible #下载ansible的rpm包，并存放在/root/lixianpackages文件夹中，同时会自动下载所需的依赖
 
 
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #添加ansible软件源
-yumdownloader --resolve --destdir /root/lixianpackages/ ansible
-yumdownloader --resolve --destdir /root/lixianpackages/ docker
+yumdownloader --resolve --destdir /root/lixianpackages/ ansible #部署的时候只有master需要，可以额外放到其他文件夹中
+yumdownloader --resolve --destdir /root/lixianpackages/ yum-utils device-mapper-persistent-data lvm2 #安装docker之前需要准备的软件
+yumdownloader --resolve --destdir /root/lixianpackages/ docker-ce
 yumdownloader --resolve --destdir /root/lixianpackages/ git
 yumdownloader --resolve --destdir /root/lixianpackages/ vim
 yumdownloader --resolve --destdir /root/lixianpackages/ glances #安装以上软件，并将安装包保存在lixianpackages文件夹中
