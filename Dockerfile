@@ -26,6 +26,6 @@ RUN mv /tmp/Dockerfile.old /1.txt #将容器内/tmp/Dockerfile.old移动到根�
 
 docker logs -f 容器id  # -f 跟踪日志输出 
 
-完成Dockerfile之后使用docker build -t ubuntu18：v1 . 命令创建镜像，-t参数可以指定新的镜像的名字，.表示Dokcerfile文件在当前目录下,当前目录为/root/Dockerfile/ubuntu18。
+完成Dockerfile之后使用docker build -t ubuntu18:v1 . 命令创建镜像，-t参数可以指定新的镜像的名字，.表示Dokcerfile文件在当前目录下,当前目录为/root/Dockerfile/ubuntu18。
 
 docekr run -it --rm 容器镜像 命令参数 #启动容器之后只执行命令参数，然后就删除容器
