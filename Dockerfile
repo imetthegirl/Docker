@@ -19,6 +19,11 @@ COPY 1.tar Dockerfile.old / #将1.tar和Dockerfile.old 复制到容器的根目�
 
 ADD 1.tar Dockerfile.old / #将1.tar和Dockerfile.old复制到容器的根目录下，并且会自动解压1.tar
 
+
+FROM ubuntu18:v1 #使用Dockerfile将镜像命名为ubuntu18:v1,再进行后面的操作
+
+RUN mv /tmp/Dockerfile.old /1.txt #将容器内/tmp/Dockerfile.old移动到根目录下命名为1.txt
+
 docker logs -f 容器id  # -f 跟踪日志输出 
 
 完成Dockerfile之后使用docker build -t ubuntu18：v1 . 命令创建镜像，-t参数可以指定新的镜像的名字，.表示Dokcerfile文件在当前目录下,当前目录为/root/Dockerfile/ubuntu18。
