@@ -35,3 +35,38 @@ drwx------. 2 root root      41 7月   2 15:27 ansible_command_payload_gPbH4o
 输出内容为黄色，表示执行成功，但对受控主机产生了影响，发生了配置改变
 
 输出内容为红色：表示执行失败!!!
+
+
+
+command(重要模块)
+执行命令模块，ansible命令执行默认模块
+
+shell(重要模块)
+执行shell脚本模块
+
+script(重要模块)
+把脚本发到客户端然后执行；执行脚本命令在远程服务器上
+
+copy(重要模块)
+把本地文件发送到远端
+
+file
+设定文件属性模块
+
+service
+系统服务管理模块
+
+cron
+计划任务管理模块
+
+yum
+yum软件包安装管理模块
+
+synchronize
+使用rsync同步文件模块
+
+mount
+挂载模块
+
+ansible帮助信息系统中查看方法：ansible-doc -l        <-查看全部模块列表信息
+ansible-doc -s [模块]   <-查看指定模块用法参数信息
