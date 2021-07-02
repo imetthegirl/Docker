@@ -1,1 +1,22 @@
 安装ansible：
+yum install ansible
+配置ansible：
+echo -n '[local]\n127.0.0.1' >> /etc/ansible/hosts #添加本地主机地址.
+ansible -i /etc/ansible/hosts --connection=local local -m ping #使用ansible ping本地主机
+ping本地主机显示为：
+127.0.0.1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+
+ansible -i /etc/ansible/hosts --connection=local local -b --become-user=root -m shell -a 'ls /' #使用ansible执行shell命令查看本机根目录
+-b - “成为”，在运行命令时告诉可以成为另一个用户。
+--become-user=root - 以用户“root”运行以下命令（例如，使用命令使用“sudo”）。我们可以在此定义任何现有的用户。
+-a 用于将任何参数传递给定义的模块 -m
+效果显示为：
+127.0.0.1 | CHANGED | rc=0 >>
+.....
+
