@@ -20,3 +20,18 @@ ansible -i /etc/ansible/hosts --connection=local local -b --become-user=root -m 
 127.0.0.1 | CHANGED | rc=0 >>
 .....
 
+copy文件：
+ansible --connection=local local -m copy -a "src=/opt/busybox.tar dest=/tmp/" #在本地复制文件，使用-m参数，将/opt/busybox.tar复制到/tmp目录下
+
+ansible --connection=local local -b --become-user=root -m shell -a 'ls -l /tmp'
+127.0.0.1 | CHANGED | rc=0 >>
+总用量 1436
+drwx------. 2 root root      41 7月   2 15:27 ansible_command_payload_gPbH4o
+-rw-r--r--. 1 root root 1463808 7月   2 15:09 busybox.tar
+
+
+输出内容为绿色，表示执行成功，仅查询但没有发生任何改变
+
+输出内容为黄色，表示执行成功，但对受控主机产生了影响，发生了配置改变
+
+输出内容为红色：表示执行失败!!!
