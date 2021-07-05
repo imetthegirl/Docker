@@ -45,6 +45,14 @@ ansible 192.168.137.40 -a "creates=/tmp ls" #creates：当该文件存在时，�
 ansible 192.168.137.40 -a "executable=/tmp ls" #executable：切换shell来执行命令，需要使用命令的绝对路径，看不出到底有什么用
 ansible 192.168.137.40 -a "removes=/tmp/1 ls" #removes：当该文件不存在时，不执行该步骤，/tmp/1不存在，所以不执行ls命令
 
+shell模块主要用于远程客户端上执行各种shell命令或者运行脚本，远程执行命令通过/bin/sh环境来执行，支持比command更多的指令,command不支持变量、重定向、管道符等操作
+chdir：执行命令前，切换到该目录
+creates：当该文件存在时，不执行该步骤
+executable：使用shell环境执行脚本
+free_from：需要执行的脚本
+removes：当该文件不存在时，不执行该步骤
+warn：如果在ansible.cfg中存在告警，如果设定了false，不会告警此行
+
 
 script(重要模块)
 
@@ -68,7 +76,16 @@ file
 设定文件属性模块
 
 service
-系统服务管理模块
+系统服务管理模块主要用于远程客户端各种服务管理，包括启动、停止、重启、重新加载等
+ansible 192.168.137.59 -m service -a "name=httpd state=started" #先安装httpd服务，才能使用命令去控制服务
+enabled：是否开机启动服务
+name：服务名称
+runlevel：服务启动级别
+arguments：服务命令行参数传递
+state：服务操作状态，状态包括started、stopped、restarted、reloaded
+
+
+
 
 cron
 计划任务管理模块
