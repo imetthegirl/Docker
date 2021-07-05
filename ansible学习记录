@@ -40,15 +40,32 @@ drwx------. 2 root root      41 7月   2 15:27 ansible_command_payload_gPbH4o
 
 command(重要模块)
 执行命令模块，ansible命令执行默认模块
+ansible 192.168.137.59 -a "chdir=/tmp ls" # chdir：执行命令前，切换到目录/tmp
+ansible 192.168.137.40 -a "creates=/tmp ls" #creates：当该文件存在时，不执行该步骤,/tmp目录存在，所以不执行ls命令
+ansible 192.168.137.40 -a "executable=/tmp ls" #executable：切换shell来执行命令，需要使用命令的绝对路径，看不出到底有什么用
+ansible 192.168.137.40 -a "removes=/tmp/1 ls" #removes：当该文件不存在时，不执行该步骤，/tmp/1不存在，所以不执行ls命令
+
 
 shell(重要模块)
 执行shell脚本模块
 
 script(重要模块)
-把脚本发到客户端然后执行；执行脚本命令在远程服务器上
+
+
 
 copy(重要模块)
-把本地文件发送到远端
+ansible 192.168.137.59 -m copy -a 'src=/root/1.sh dest=/tmp mode=755 owner=root' #将ansible主机中/root/1.sh复制到192.168.137.59的/tmp目录下，设置权限为755，所有者为root
+Ansible copy模块主要用于文件或者目录复制，支持文件、目录、权限、用户组功能
+src：Ansible端源文件或者目录，空目录不复制
+content：用来替代src，用于将指定文件的内容复制到远程文件内
+dest：客户端目标目录或者文件，需要绝对路径
+backup：复制之前，先备份远程节点上的原始文件
+directory_mode：用于复制目录，新建的文件会被复制，而旧的不会被复制
+follow：支持link文件复制
+force：覆盖远程主机不一致的内容
+group：设定远程主机目录的组名
+mode：设定远程主机文件及目录的权限
+owner：设定远程主机目录的用户名
 
 file
 设定文件属性模块
@@ -61,6 +78,8 @@ cron
 
 yum
 yum软件包安装管理模块
+ansible 192.168.137.59 -m yum -a 'name=vim state=installed' 
+#给192.168.137.59安装vim，name表示需要安装的软件名称，state表示状态，常见state=installed表示安装软件，state=absent表示卸载软件，disable_gpg_check=no表示不检查key
 
 synchronize
 使用rsync同步文件模块
@@ -71,12 +90,16 @@ mount
 ansible帮助信息系统中查看方法：ansible-doc -l        <-查看全部模块列表信息
 ansible-doc -s [模块]   <-查看指定模块用法参数信息
 
+学习文档：
+Ansible实践篇（一）：Ansible免密登录
+https://blog.csdn.net/lcl_xiaowugui/article/details/81874015
+Ansible实践篇（二）：Ansible常用系统模块：ping、command、copy、yum、file、user
+https://blog.csdn.net/lcl_xiaowugui/article/details/81878345
+Ansible实践篇（三）：Ansible常用模块：cron、synchronize、shell、service
+https://blog.csdn.net/lcl_xiaowugui/article/details/81905324
+Ansible实践篇（四）：Ansible PlayBook应用
+https://blog.csdn.net/lcl_xiaowugui/article/details/81907865?spm=1001.2014.3001.5501
 
-
-ansible 192.168.137.59 -a "chdir=/tmp ls" # chdir：执行命令前，切换到目录/tmp
-ansible 192.168.137.40 -a "creates=/tmp ls" #creates：当该文件存在时，不执行该步骤,/tmp目录存在，所以不执行ls命令
-ansible 192.168.137.40 -a "executable=/tmp ls" #executable：切换shell来执行命令，需要使用命令的绝对路径，看不出到底有什么用
-ansible 192.168.137.40 -a "removes=/tmp/1 ls" #removes：当该文件不存在时，不执行该步骤，/tmp/1不存在，所以不执行ls命令
 
 
 
