@@ -46,9 +46,6 @@ ansible 192.168.137.40 -a "executable=/tmp ls" #executable：切换shell来执�
 ansible 192.168.137.40 -a "removes=/tmp/1 ls" #removes：当该文件不存在时，不执行该步骤，/tmp/1不存在，所以不执行ls命令
 
 
-shell(重要模块)
-执行shell脚本模块
-
 script(重要模块)
 
 
