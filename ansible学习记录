@@ -81,6 +81,27 @@ yum软件包安装管理模块
 ansible 192.168.137.59 -m yum -a 'name=vim state=installed' 
 #给192.168.137.59安装vim，name表示需要安装的软件名称，state表示状态，常见state=installed表示安装软件，state=absent表示卸载软件，disable_gpg_check=no表示不检查key
 
+user
+user模块主要用于操作系统用户、组、权限、密码等操作
+ansible 192.168.137.59 -m user -a 'name=ceshi home=/tmp' #在192.168.137.59创建用户，命名为ceshi，家目录为/tmp
+ansible 192.168.137.59 -m user -a 'name=ceshi state=absent force=yes' #删除用户ceshi，state=absent表示删除用户
+system：默认创建为普通用户，为yes则创建系统用户
+append：添加一个新的组
+comment：添加描述信息
+createhome：给用户创建家目录
+force：强制删除用户
+group：创建用户主组
+groups：将用户加入组或者附属组添加
+home：指定用户的家目录
+name：表示状态，是否create、remove、modify
+password：指定用户的密码，为加密密码
+remove：删除用户
+shell：设置用户的shell登录环境
+uid：设置用户ID
+update_password：修改用户密码
+state：用户状态，默认为present，表示新建用户
+
+
 synchronize
 使用rsync同步文件模块
 
