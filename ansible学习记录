@@ -76,8 +76,7 @@ ansible-doc -s [模块]   <-查看指定模块用法参数信息
 ansible 192.168.137.59 -a "chdir=/tmp ls" # chdir：执行命令前，切换到目录/tmp
 ansible 192.168.137.40 -a "creates=/tmp ls" #creates：当该文件存在时，不执行该步骤,/tmp目录存在，所以不执行ls命令
 ansible 192.168.137.40 -a "executable=/tmp ls" #executable：切换shell来执行命令，需要使用命令的绝对路径，看不出到底有什么用
-free_from：需要执行的脚本,一般使用Ansible的-a参数代替。
-removes：当该文件不存在时，不执行该步骤
-warn：如果在ansible.cfg中存在告警，如果设定了false，不会告警该行
+ansible 192.168.137.40 -a "removes=/tmp/1 ls" #removes：当该文件不存在时，不执行该步骤，/tmp/1不存在，所以不执行ls命令
+
 
 
