@@ -9,9 +9,9 @@ apache.yml
    - name: Apache server Install #任务名字，随意取，不影响
      yum: name=httpd state=installed #表示引用ansible命令的yum模块，具体参数详细查看ansible学习记录
      notify: （执行handlers定义的方法）
-      - start httpd #
+      - start httpd #方法名字
  handlers: (大概就是定义一个方法，然后notify去执行这个方法)
-   - name: start httpd
+   - name: start httpd #方法名字
      service: name=httpd state=started enabled=yes （启动httpd服务）
 
 
