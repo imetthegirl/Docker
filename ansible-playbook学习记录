@@ -8,10 +8,11 @@ apache.yml
   tasks: #tasks表示任务
    - name: Apache server Install #任务名字，随意取，不影响
      yum: name=httpd state=installed #表示引用ansible命令的yum模块，具体参数详细查看ansible学习记录
-     notify: #notify 可以看到它包含了一个具体项目的列表，这里表示的是“start httpd”，这个不是ansible的命令，而是对handlers的引用，它可以执行某些功能，在handlers中里面定义（不理解）
+     notify: （执行handlers定义的方法）
       - start httpd #
+ handlers: (大概就是定义一个方法，然后notify去执行这个方法)
    - name: start httpd
-     service: name=httpd state=started enabled=yes
+     service: name=httpd state=started enabled=yes （启动httpd服务）
 
 
 https://blog.csdn.net/lcl_xiaowugui/article/details/81907865?spm=1001.2014.3001.5501
