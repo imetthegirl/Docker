@@ -84,3 +84,6 @@ kubeadm join 192.168.137.40:6443 --token yjgg0p.jtj53hnfgyk1z1bn --discovery-tok
 
 此时在master节点上使用kubectl get nodes命令已经可以看到pod节点了，但是在node上无法使用此命令查看节点。
 
+
+
+学习文档来自于https://blog.csdn.net/skh2015java/article/details/97403935
