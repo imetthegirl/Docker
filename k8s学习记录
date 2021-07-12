@@ -82,7 +82,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 同时还有一句提示，是将node节点加入集群的命令，在node节点上执行此命令即可将节点加入集群：
 kubeadm join 192.168.137.40:6443 --token yjgg0p.jtj53hnfgyk1z1bn --discovery-token-ca-cert-hash sha256:7286399c6d6caa5b0b633f5a05d7e346d2c621b1f1c8d1de0702693b1b8a167b
 
-此时在master节点上使用kubectl get nodes命令已经可以看到pod节点了，但是在node上无法使用此命令查看节点。
+此时在master节点上使用kubectl get nodes命令已经可以看到node节点了，但是在node1上无法使用此命令查看节点。
 
 
 
