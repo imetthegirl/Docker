@@ -85,5 +85,16 @@ kubeadm join 192.168.137.40:6443 --token yjgg0p.jtj53hnfgyk1z1bn --discovery-tok
 此时在master节点上使用kubectl get nodes命令已经可以看到node节点了，但是在node1上无法使用此命令查看节点。
 
 
+Flannel安装
+
+Flannel是CoreOS维护的一个网络组件，Flannel为每个Pod提供全局唯一的IP，Flannel使用ETCD来存储Pod子网与Node IP之间的关系。flanneld守护进程在每台主机上运行，并负责维护ETCD信息和路由数据包。
+在master节点执行以下命令
+kubectl apply -f  https://raw.githubusercontent.com/coreos/flannel/master/Documentat
+
+然后即可查看flannel对应的pod信息，此时所有pod都处于running状态，node节点也处于ready状态。
+
+kubectl get pods -n kube-system
+
+
 
 学习文档来自于https://blog.csdn.net/skh2015java/article/details/97403935
