@@ -11,8 +11,8 @@ vim /etc/selinux/config #将状态改为disabled
 vim /etc/fstab #注释swap分区，然后重启服务器
 
 修改主机名：
-hostnamectl set-hostname k8s-master #master节点
-hostnamectl set-hostname k8s-node1 #node节点
+hostnamectl set-hostname master #master节点
+hostnamectl set-hostname node1 #node节点
 
 将桥接的IPv4流量传递到iptables的链：
 cat >/etc/sysctl.d/k8s.conf << EOF
