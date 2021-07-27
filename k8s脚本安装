@@ -12,7 +12,7 @@
 ansible all -m shell -a 'systemctl stop firewalld'
 ansible all -m shell -a 'systemctl disable firewalld' #关闭防火墙
 ansible all -m shell -a "sed -i 's/enforcing/disabled/' /etc/selinux/config" #关闭selinux
-ansible all -m shell -a "sed '$d' /etc/fstab"  #关闭swap分区
+ansible all -m shell -a "sed -i '$d' /etc/fstab"  #关闭swap分区
 #ansible local -m shell -a 'hostnamectl set-hostname master'
 #ansible node -m shell -a 'hostnamectl set-hostname node1' #修改主机名,还是先修改好一点，修改完主机名要重新登录
 
