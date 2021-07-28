@@ -110,5 +110,5 @@ ansible node -m shell -a 'kubeadm join 192.168.137.40:6443 --token yjgg0p.jtj53h
 
 kubectl apply -f  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-
+#docker批量保存镜像命令docker save `docker images |awk '{print $1":"$2}' |grep -v TAG |xargs ` |gzip > /tmp/test.tar.gz
 
