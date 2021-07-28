@@ -91,7 +91,16 @@ kubeadm init \
 --kubernetes-version v1.18.0 \
 --service-cidr=10.96.0.0/12 \ 
 --pod-network-cidr=10.244.0.0/16 \
---ignore-preflight-errors=...
+--ignore-preflight-errors=all
+
+如遇到kubeadm初始化失败的错误
+[kubelet-check] Initial timeout of 40s passed.
+error execution phase upload-config/kubelet:
+Error writing Crisocket information for the control-plane node: timed out waiting for the condition
+执行下面的命令：
+swapoff -a && kubeadm reset && systemctl daemon-reload && systemctl restart kubelet && iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+
+
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
