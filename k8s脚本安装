@@ -108,7 +108,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ansible node -m shell -a 'kubeadm join 192.168.137.40:6443 --token yjgg0p.jtj53hnfgyk1z1bn --discovery-token-ca-cert-hash sha256:7286399c6d6caa5b0b633f5a05d7e346d2c621b1f1c8d1de0702693b1b8a167b'
 
-kubectl apply -f  https://raw.githubusercontent.com/coreos/flannel/master/Documentat
+kubectl apply -f  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 
 
