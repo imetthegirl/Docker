@@ -1,4 +1,5 @@
 安装ansible：
+yum install -y epel-release
 yum install ansible
 配置ansible：
 echo -n '[local]\n127.0.0.1' >> /etc/ansible/hosts #添加本地主机地址.
