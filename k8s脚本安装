@@ -43,7 +43,7 @@ ansible all -m shell -a 'ntpdate time.windows.com'
 #yum -y install docker-ce
 #systemctl enable docker && systemctl start docker
 
-absible all -m shell -a 'wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo'
+ansible all -m shell -a 'wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo'
 ansible all -m shell -a 'yum -y install docker-ce'
 ansible all -m shell -a 'systemctl enable docker && systemctl start docker'
 
