@@ -1,0 +1,14 @@
+#查看集群中的node节点
+kubectl get nodes
+#查看集群中的pod
+kubectl get pods
+#使用k8s启动一个容器
+kubectl run 容器名字 --image=使用镜像名 --port=端口号
+#在容器内部执行命令
+kubectl exec 容器名字 命令
+#停止启动的容器
+kubectl delete pod 容器名字
+#暂停一个node节点，停止在此node节点上再创建新的pod
+kubectl drain <node name>
+#重新启用此node节点，检查完毕之后恢复节点的正常使用
+kubectl uncordon <node name>
