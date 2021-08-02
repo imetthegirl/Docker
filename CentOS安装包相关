@@ -1,4 +1,14 @@
+
+###CentOS检测软件是否安装
+yum provides */modprobe
+
+#Ubuntu检查软件是否安装
+apt-cache search  xxxx
+
+
+离线部署环境，需要准备离线安装包
 系统为centos7.6，需要全新安装的系统，未安装任何软件的全新系统，避免到使用的时候缺少依赖包，所以需要任何软件都没安装的系统最好。
+
 
 ### 使用Yumdownloader工具
 yum install yum-utils #安装离线安装包下载工具
