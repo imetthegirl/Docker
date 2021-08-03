@@ -4,6 +4,6 @@
 
 ### [ansible学习记录中记录了ansible学习过程中的知识点](https://github.com/imetthegirl/Docker/blob/main/ansible%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95)
 
-### [安装k8s学习记录记录了k8s的安装方法，与最基础的使用命令](https://github.com/imetthegirl/Docker/blob/main/%E5%AE%89%E8%A3%85k8s%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95)
+### [安装k8s脚本安装记录了k8s的安装方法，与最基础的使用命令](https://github.com/imetthegirl/Docker/blob/main/%E5%AE%89%E8%A3%85k8s%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95)
 
 ### [k8s脚本安装记录了使用ansible去自动化部署k8s集群的方法](https://github.com/imetthegirl/Docker/blob/main/k8s%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85)
