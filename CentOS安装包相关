@@ -39,6 +39,12 @@ yum localinstall * #安装lixianpackages下所有的rpm包
 
 https://www.iorisun.com/archives/650/
 
+### yum 卸载软件，并卸载相关依赖包
+
+yum history #查看yum历史记录
+
+yum history undo ID #即可取消对应的软件的安装，并且卸载安装软件时安装的依赖包
+
 
 
 
