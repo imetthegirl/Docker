@@ -1,0 +1,54 @@
+# 安装nfs，使用共享文件夹作为html文件存放的文件夹
+创建共享目录
+mkdir /opt/html
+修改nfs配置文件，在文件中添加下方内容：
+vi /etc/exports
+添加共享目录
+/opt/html *(rw,no_root_squash,async)
+重启nfs服务
+service nfs restart
+客户端同样安装nfs服务，安装好之后mount挂载
+mount -t nfs 192.168.0.37:/opt/html /opt/html
+
+# 配置nginx
+准备nginx.conf，配置负载均衡，反向代理，健康检查，rewrite跳转
+
+events {
+    worker_connections 1024;
+}
+http {
+        upstream myServer {
+            server 192.168.0.37:8000 max_fails=1 fail_timeout=40s;
+            server 192.168.0.30:8001 max_fails=1 fail_timeout=40s;
+            server 192.168.0.30:8002 max_fails=1 fail_timeout=40s;
+    }
+
+        server {
+                listen 80;
+                server_name localhost;
+                root /usr/share/nginx/html;
+                location / {
+                  proxy_pass http://myServer;
+                  rewrite ^/1.html(.*) http://www.baidu.com redirect;
+                  #浏览xxx/1.html时会自动跳转到百度
+
+           }
+
+    }
+
+}
+
+
+将index.html文件放在html目录下
+同时还将1.html也放在html目录下，当链接后存在1.html时将自动跳转至百度
+
+拉取nginx镜像
+docker pull nginx
+docker run -itd -p 8000:80 --name nginxa -v /opt/nginx.conf:/etc/nginx/nginx.conf -v /opt/html:/usr/share/nginx/html nginx
+docker restart 容器ID
+此时使用nginxa宿主机的公网IP:8000已经可以查看网页
+
+# 在slave创建容器
+docker run --name nginxc -itd -p 8001:80 -v /opt/html:/usr/share/nginx/html:ro nginx
+
+docker run --name nginxc -itd -p 8002:80 -v /opt/html1:/usr/share/nginx/html:ro nginx
