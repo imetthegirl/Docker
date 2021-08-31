@@ -28,7 +28,7 @@ yumdownloader --resolve --destdir /root/lixianpackages/ glances #安装以上软
 rpm -ivh https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm #添加mysql-client软件源
 yumdownloader --resolve --destdir /root/lixianpackages/ mysql-community-client.x86_64 #安装mysql-client,并保存安装包
 yumdownloader --resolve --destdir /root/lixianpackages/ epel-release
-yumdownloader --resolve --destdir /root/lixianpackages/ the_silver_searcher #以两个为安装ag，并保存安装包
+yumdownloader --resolve --destdir /root/lixianpackages/ the_silver_searcher #以上两个为安装ag，并保存安装包
 
 
 tar zcvf rpm.tar lixianpackages #将所有离线安装包打包为一整个压缩文件
