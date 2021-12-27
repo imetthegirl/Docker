@@ -1,6 +1,6 @@
 ### [Dockerfile中记录了学习过程中的知识点](https://github.com/imetthegirl/Docker/blob/main/Dockerfile)
 
-### [CentOS离线安装包下载中记录了下载离线安装包，并将安装包统一保存打包的过程](https://github.com/imetthegirl/Docker/blob/main/CentOS%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8B%E8%BD%BD)
+### [CentOS离线安装包下载中记录了下载离线安装包，并将安装包统一保存打包的过程](https://github.com/imetthegirl/Docker/blob/main/CentOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%9B%B8%E5%85%B3)
 
 ### [ansible学习记录中记录了ansible学习过程中的知识点](https://github.com/imetthegirl/Docker/blob/main/ansible%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95)
 
