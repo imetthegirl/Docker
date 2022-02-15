@@ -46,7 +46,7 @@ ansible all -m shell -a 'ntpdate time.windows.com'
 ansible all -m shell -a 'wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo'
 ansible all -m shell -a 'yum -y install docker-ce'
 ansible all -m shell -a 'systemctl enable docker && systemctl start docker'
-
+#docker启动失败，journalctl -xe显示Read-only file system 执行 mount -o remount -rw / 然后重启docker
 
 #配置镜像下载加速器：
 cat >/etc/docker/daemon.json << EOF
