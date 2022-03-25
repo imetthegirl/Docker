@@ -12,3 +12,7 @@ kubectl delete pod 容器名字
 kubectl drain <node name>
 #重新启用此node节点，检查完毕之后恢复节点的正常使用
 kubectl uncordon <node name>
+#查看pod详细信息
+kubectl describe pods $podname
+#查看系统pod状态
+kubectl get pods -nkube-system
