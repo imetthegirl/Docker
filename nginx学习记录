@@ -1,17 +1,17 @@
-# 安装nfs，使用共享文件夹作为html文件存放的文件夹
+# 安装nfs,使用共享文件夹作为html文件存放的文件夹
 创建共享目录
 mkdir /opt/html
-修改nfs配置文件，在文件中添加下方内容：
+修改nfs配置文件,在文件中添加下方内容：
 vi /etc/exports
 添加共享目录
 /opt/html *(rw,no_root_squash,async)
 重启nfs服务
 service nfs restart
-客户端同样安装nfs服务，安装好之后mount挂载
+客户端同样安装nfs服务,安装好之后mount挂载
 mount -t nfs 192.168.0.37:/opt/html /opt/html
 
 # 配置nginx
-准备nginx.conf，配置负载均衡，反向代理，健康检查，rewrite跳转
+准备nginx.conf,配置负载均衡,反向代理,健康检查,rewrite跳转
 
 events {
     worker_connections 1024;
@@ -40,7 +40,7 @@ http {
 
 
 将index.html文件放在html目录下
-同时还将1.html也放在html目录下，当链接后存在1.html时将自动跳转至百度
+同时还将1.html也放在html目录下,当链接后存在1.html时将自动跳转至百度
 
 拉取nginx镜像
 docker pull nginx

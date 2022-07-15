@@ -6,8 +6,8 @@ yum provides */modprobe
 apt-cache search  xxxx
 
 
-离线部署环境，需要准备离线安装包
-系统为centos7.6，需要全新安装的系统，未安装任何软件的全新系统，避免到使用的时候缺少依赖包，所以需要任何软件都没安装的系统最好。
+离线部署环境,需要准备离线安装包
+系统为centos7.6,需要全新安装的系统,未安装任何软件的全新系统,避免到使用的时候缺少依赖包,所以需要任何软件都没安装的系统最好。
 
 
 ### 使用Yumdownloader工具
@@ -15,20 +15,20 @@ yum install yum-utils #安装离线安装包下载工具
 mkdir /root/lixianpackages #创建离线安装包下载的文件夹
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #下载yum安装ansible所需的fedora epel源
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  #添加docker阿里源
-yumdownloader --resolve --destdir /root/lixianpackages/ ansible #下载ansible的rpm包，并存放在/root/lixianpackages文件夹中，同时会自动下载所需的依赖
+yumdownloader --resolve --destdir /root/lixianpackages/ ansible #下载ansible的rpm包,并存放在/root/lixianpackages文件夹中,同时会自动下载所需的依赖
 
 
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #添加ansible软件源
-yumdownloader --resolve --destdir /root/lixianpackages/ ansible #部署的时候只有master需要，可以额外放到其他文件夹中
+yumdownloader --resolve --destdir /root/lixianpackages/ ansible #部署的时候只有master需要,可以额外放到其他文件夹中
 yumdownloader --resolve --destdir /root/lixianpackages/ yum-utils device-mapper-persistent-data lvm2 #安装docker之前需要准备的软件
 yumdownloader --resolve --destdir /root/lixianpackages/ docker-ce #安装最新版的docker
 yumdownloader --resolve --destdir /root/lixianpackages/ git
 yumdownloader --resolve --destdir /root/lixianpackages/ vim
-yumdownloader --resolve --destdir /root/lixianpackages/ glances #安装以上软件，并将安装包保存在lixianpackages文件夹中
+yumdownloader --resolve --destdir /root/lixianpackages/ glances #安装以上软件,并将安装包保存在lixianpackages文件夹中
 rpm -ivh https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm #添加mysql-client软件源
 yumdownloader --resolve --destdir /root/lixianpackages/ mysql-community-client.x86_64 #安装mysql-client,并保存安装包
 yumdownloader --resolve --destdir /root/lixianpackages/ epel-release
-yumdownloader --resolve --destdir /root/lixianpackages/ the_silver_searcher #以上两个为安装ag，并保存安装包
+yumdownloader --resolve --destdir /root/lixianpackages/ the_silver_searcher #以上两个为安装ag,并保存安装包
 
 
 tar zcvf rpm.tar lixianpackages #将所有离线安装包打包为一整个压缩文件
@@ -39,11 +39,11 @@ yum localinstall * #安装lixianpackages下所有的rpm包
 
 https://www.iorisun.com/archives/650/
 
-### yum 卸载软件，并卸载相关依赖包
+### yum 卸载软件,并卸载相关依赖包
 
 yum history #查看yum历史记录
 
-yum history undo ID #即可取消对应的软件的安装，并且卸载安装软件时安装的依赖包
+yum history undo ID #即可取消对应的软件的安装,并且卸载安装软件时安装的依赖包
 
 
 

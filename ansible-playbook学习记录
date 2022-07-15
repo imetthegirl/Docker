@@ -1,4 +1,4 @@
-ansible-playbook：实现根据主机不同操作系统，执行不同的命令。如centos7执行：yum install glances;  ubuntu16.04执行：apt install glances；
+ansible-playbook:实现根据主机不同操作系统,执行不同的命令。如centos7执行:yum install glances;  ubuntu16.04执行:apt install glances；
 
 apache.yml
 
@@ -6,13 +6,13 @@ apache.yml
 - hosts: 192.168.137.59  #指定目标主机IP地址
   user: root  #以root用户身份执行
   tasks: #tasks表示任务
-   - name: Apache server Install #任务名字，随意取，不影响
-     yum: name=httpd state=installed #表示引用ansible命令的yum模块，具体参数详细查看ansible学习记录
-     notify: （执行handlers定义的方法）
+   - name: Apache server Install #任务名字,随意取,不影响
+     yum: name=httpd state=installed #表示引用ansible命令的yum模块,具体参数详细查看ansible学习记录
+     notify: (执行handlers定义的方法)
       - start httpd #方法名字
- handlers: (大概就是定义一个方法，然后notify去执行这个方法)
+ handlers: (大概就是定义一个方法,然后notify去执行这个方法)
    - name: start httpd #方法名字
-     service: name=httpd state=started enabled=yes （启动httpd服务）
+     service: name=httpd state=started enabled=yes (启动httpd服务)
 
 
 https://blog.csdn.net/lcl_xiaowugui/article/details/81907865?spm=1001.2014.3001.5501
