@@ -1,20 +1,20 @@
-安装k8s：
+安装k8s:
 master和node节点都关闭防火墙与selinux
-关闭防火墙：
+关闭防火墙:
 systemctl stop firewalld
 systemctl disable firewalld
  
-关闭selinux：
+关闭selinux:
 vim /etc/selinux/config #将状态改为disabled
 
-关闭swap分区：
-vim /etc/fstab #注释swap分区，然后重启服务器
+关闭swap分区:
+vim /etc/fstab #注释swap分区,然后重启服务器
 
-修改主机名：
+修改主机名:
 hostnamectl set-hostname master #master节点
 hostnamectl set-hostname node1 #node节点
 
-将桥接的IPv4流量传递到iptables的链：
+将桥接的IPv4流量传递到iptables的链:
 cat >/etc/sysctl.d/k8s.conf << EOF
 net.bridge.bridge-nf-call-ip6tables =1
 net.bridge.bridge-nf-call-iptables =1
@@ -22,28 +22,28 @@ EOF
 
 sysctl --system  # 生效
 
-配置时间同步：
+配置时间同步:
 yum install ntpdate -y
 ntpdate time.windows.com
 
-安装docker，如果已经安装可以省略此步骤：
+安装docker,如果已经安装可以省略此步骤:
 wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo
 yum -y install docker-ce
 systemctl enable docker && systemctl start docker
 
-配置镜像下载加速器：
+配置镜像下载加速器:
 cat >/etc/docker/daemon.json << EOF
 {
 "registry-mirrors":["https://b9pmyelo.mirror.aliyuncs.com"]
 }
 EOF
 
-重启docker：
+重启docker:
 systemctl restart docker
 
-安装kubeadm、kubelet和kubectl：
+安装kubeadm、kubelet和kubectl:
 
-配置阿里的yum源：
+配置阿里的yum源:
 cat >/etc/yum.repos.d/kubernetes.repo << EOF
 [kubernetes]
 name=Kubernetes
@@ -54,11 +54,11 @@ repo_gpgcheck=0
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
 EOF
 
-安装kubeadm、kubelet和kubectl：
+安装kubeadm、kubelet和kubectl:
 yum install -y kubelet-1.18.0  kubeadm-1.18.0  kubectl-1.18.0
 systemctl enable kubelet
 
-初始化master节点（此步骤只需要在master节点上执行）：
+初始化master节点(此步骤只需要在master节点上执行):
 kubeadm init \
 --apiserver-advertise-address=192.168.137.40 \
 --image-repository registry.aliyuncs.com/google_containers \
@@ -70,30 +70,30 @@ kubeadm init \
 
 --apiserver-advertise-address 集群通告地址
 
-参数说明：
---image-repository 由于默认拉取镜像地址k8s.gcr.io国内无法访问，这里指定阿里云镜像仓库地址。
---kubernetes-version K8s版本，与上面安装的一致
---service-cidr 集群内部虚拟网络，Pod统一访问入口
---pod-network-cidr Pod网络，与下面部署的CNI网络组件yaml中保持一致
+参数说明:
+--image-repository 由于默认拉取镜像地址k8s.gcr.io国内无法访问,这里指定阿里云镜像仓库地址。
+--kubernetes-version K8s版本,与上面安装的一致
+--service-cidr 集群内部虚拟网络,Pod统一访问入口
+--pod-network-cidr Pod网络,与下面部署的CNI网络组件yaml中保持一致
 
-初始化完成时会提示以下内容，直接执行以下内容就行：
+初始化完成时会提示以下内容,直接执行以下内容就行:
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-同时还有一句提示，是将node节点加入集群的命令，在node节点上执行此命令即可将节点加入集群：
+同时还有一句提示,是将node节点加入集群的命令,在node节点上执行此命令即可将节点加入集群:
 kubeadm join 192.168.137.40:6443 --token yjgg0p.jtj53hnfgyk1z1bn --discovery-token-ca-cert-hash sha256:7286399c6d6caa5b0b633f5a05d7e346d2c621b1f1c8d1de0702693b1b8a167b
 
-此时在master节点上使用kubectl get nodes命令已经可以看到node节点了，但是在node1上无法使用此命令查看节点。
+此时在master节点上使用kubectl get nodes命令已经可以看到node节点了,但是在node1上无法使用此命令查看节点。
 
 
 Flannel安装
 
-Flannel是CoreOS维护的一个网络组件，Flannel为每个Pod提供全局唯一的IP，Flannel使用ETCD来存储Pod子网与Node IP之间的关系。flanneld守护进程在每台主机上运行，并负责维护ETCD信息和路由数据包。
+Flannel是CoreOS维护的一个网络组件,Flannel为每个Pod提供全局唯一的IP,Flannel使用ETCD来存储Pod子网与Node IP之间的关系。flanneld守护进程在每台主机上运行,并负责维护ETCD信息和路由数据包。
 在master节点执行以下命令
 kubectl apply -f  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-然后即可查看flannel对应的pod信息，此时所有pod都处于running状态，node节点也处于ready状态。
+然后即可查看flannel对应的pod信息,此时所有pod都处于running状态,node节点也处于ready状态。
 
 kubectl get pods -n kube-system
 
